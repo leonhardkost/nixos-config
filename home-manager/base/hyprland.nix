@@ -66,7 +66,7 @@
           ]
           ++ workspaces;
 
-          windowrule = "bordersize 0, fullscreen:1";
+          windowrule = "border_size 0, match:fullscreen_state_client 1";
 
           general = {
             gaps_in = 2;
