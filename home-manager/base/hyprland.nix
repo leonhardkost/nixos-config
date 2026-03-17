@@ -46,6 +46,9 @@
           ];
           "$mod" = "SUPER";
           "$launcher" = "rofi -show drun";
+          bindr = [
+            "$mod,Super_L,exec,pkill rofi || $launcher"
+          ];
           bind = [
             "ALTSHIFT,Q,killactive,"
             "ALT,V,togglefloating,"
@@ -53,7 +56,6 @@
             "ALTSHIFT,F,fullscreen,0"
             "$mod,Return,exec,kitty"
             "$mod,F,exec,firefox"
-            "$mod,R,exec,$launcher"
 
             "ALT,H,movefocus,l"
             "ALT,L,movefocus,r"
