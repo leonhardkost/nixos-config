@@ -2,6 +2,7 @@
 {
   imports = [
     ./cmp.nix
+    ./dap.nix
     ./lsp.nix
     ./fmt.nix
     ./treesitter.nix
