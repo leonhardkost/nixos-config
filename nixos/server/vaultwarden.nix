@@ -20,17 +20,16 @@ in
     };
   };
 
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "admin@${domain}";
-  };
+  security.acme.certs.${domain}.extraDomainNames = [
+    vaultDomain
+  ];
 
   services.nginx = {
     enable = true;
 
     virtualHosts.${vaultDomain} = {
       forceSSL = true;
-      enableACME = true;
+      useACMEHost = config.kekleo.domain;
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
         proxyWebsockets = true;

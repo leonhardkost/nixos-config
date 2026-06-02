@@ -50,4 +50,23 @@
       AllowUsers = [ "leonhard" ];
     };
   };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "admin@${config.kekleo.domain}";
+    defaults.webroot = "/var/lib/acme/acme-challenge/";
+    certs.${config.kekleo.domain} = {
+      group = config.services.nginx.group;
+    };
+  };
+
+  services.nginx = {
+    enable = true;
+
+    virtualHosts.${config.kekleo.domain} = {
+      forceSSL = true;
+      useACMEHost = config.kekleo.domain;
+      locations."/.well-known/".root = config.security.acme.defaults.webroot;
+    };
+  };
 }
