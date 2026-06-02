@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./secrets
     ./dyndns
+    ./gitea.nix
     ./vaultwarden.nix
   ];
 
