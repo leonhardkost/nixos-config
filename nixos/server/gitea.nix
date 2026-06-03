@@ -10,6 +10,7 @@ in
   services.gitea = {
     enable = true;
     settings.server.ROOT_URL = "https://${gitDomain}";
+    settings.server.SSH_PORT = builtins.elemAt config.services.openssh.ports 0;
     settings.service.DISABLE_REGISTRATION = true;
     settings.log.LEVEL = "Critical";
   };
