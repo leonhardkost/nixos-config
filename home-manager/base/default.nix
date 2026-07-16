@@ -1,7 +1,9 @@
 {
   config,
   osConfig ? null,
+  inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -19,6 +21,24 @@ in
   ];
 
   kekleo = lib.mkIf (osConfig != null) (mkDefaultSharedAttrs config.kekleo (osConfig.kekleo or { }));
+
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      package = pkgs.nix;
+
+      settings = {
+        experimental-features = osConfig.nix.settings.experimental-features or "nix-command flakes";
+        # Opinionated: disable global registry
+        flake-registry = "";
+      };
+
+      # Opinionated: make flake registry and nix path match flake inputs
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    };
 
   home.sessionVariables = {
     XDG_CACHE_HOME = "$HOME/.cache";
