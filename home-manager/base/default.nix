@@ -26,7 +26,7 @@ in
     let
       flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
     in
-    {
+    lib.mkDefault {
       package = pkgs.nix;
 
       settings = {
