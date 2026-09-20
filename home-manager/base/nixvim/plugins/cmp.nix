@@ -7,13 +7,11 @@
     ];
 
     plugins = {
-      lspkind = {
-        enable = true;
-        settings.mode = "symbol";
-      };
+      lspkind.enable = true;
 
       cmp = {
         enable = true;
+
         autoEnableSources = true;
 
         settings = {
@@ -21,7 +19,7 @@
 
           formatting.fields = [
             "abbr"
-            "kind"
+            "icon"
             "menu"
           ];
 
