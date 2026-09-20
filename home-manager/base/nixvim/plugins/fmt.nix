@@ -40,7 +40,7 @@
         formatters_by_ft = {
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
-          python = [ "black" ];
+          python = [ "ruff" ];
         };
       };
     };
@@ -48,7 +48,7 @@
     extraPackages = with pkgs; [
       stylua
       nixfmt
-      black
+      ruff
     ];
   };
 }
