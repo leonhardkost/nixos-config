@@ -51,13 +51,7 @@
             installCargo = false;
             installRustc = false;
           };
-          qmlls = {
-            enable = true;
-            cmd = [
-              "qmlls"
-              "-E"
-            ];
-          };
+          clangd.enable = true;
         };
       };
     };
