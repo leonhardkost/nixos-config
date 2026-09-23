@@ -30,7 +30,7 @@
           c = [ "clang-format" ];
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
-          python = [ "ruff" ];
+          python = [ "ruff_format" ];
         };
 
         formatters.clang-format.prepend_args = [
