@@ -10,13 +10,9 @@
     ./plugins
   ];
 
-  options.kekleo.neovim = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "Whether to enable neovim.";
-  };
+  options.kekleo.neovim.enable = lib.mkEnableOption "neovim";
 
-  config = lib.mkIf config.kekleo.neovim {
+  config = lib.mkIf config.kekleo.neovim.enable {
     programs.nixvim = {
       enable = true;
       viAlias = true;

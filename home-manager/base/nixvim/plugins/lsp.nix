@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./typst.nix
+  ];
+
   programs.nixvim = {
     diagnostic.settings = {
       severity_sort = true;
