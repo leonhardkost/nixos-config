@@ -18,7 +18,10 @@
     in
     lib.mkForce {
       settings = {
-        experimental-features = "nix-command flakes";
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         # Opinionated: disable global registry
         flake-registry = "";
       };

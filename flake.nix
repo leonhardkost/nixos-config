@@ -48,6 +48,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 extraSpecialArgs = { inherit inputs outputs; };
+                backupFileExtension = "hm.bak";
                 users.leonhard.imports = homeImports ++ [
                   ./home-manager/leonhard
                 ];
