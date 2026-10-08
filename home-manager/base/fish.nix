@@ -22,11 +22,15 @@
   };
 
   home.activation.configure-tide = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    if [ ! -e "$HOME/.config/fish/tide_configured" ]; then
-      echo "Configuring Tide..."
-      $DRY_RUN_CMD ${pkgs.fish}/bin/fish -c "tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time=No --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Few icons' --transient=Yes"
-      $DRY_RUN_CMD touch "$HOME/.config/fish/tide_configured"
-      echo "Finish Configuring Tide..."
-    fi
+    run env XDG_DATA_DIRS="${pkgs.fishPlugins.tide}/share:$XDG_DATA_DIRS" \
+      ${pkgs.fish}/bin/fish -c "tide configure --auto \
+        --style=Lean \
+        --prompt_colors='16 colors' \
+        --show_time=No \
+        --lean_prompt_height='Two lines' \
+        --prompt_connection=Disconnected \
+        --prompt_spacing=Compact \
+        --icons='Few icons' \
+        --transient=Yes"
   '';
 }
