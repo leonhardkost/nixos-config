@@ -3,22 +3,18 @@
   programs.nixvim = {
     opts.formatexpr = "v:lua.require'conform'.formatexpr()";
 
+    keymaps = [
+      {
+        key = "<leader>f";
+        action.__raw = ''
+          function() require 'conform'.format { async = true } end
+        '';
+        options.desc = "Format Buffer";
+      }
+    ];
+
     plugins.conform-nvim = {
       enable = true;
-      lazyLoad.enable = true;
-      lazyLoad.settings = {
-        event = "BufWritePre";
-        cmd = "ConformInfo";
-        keys = [
-          {
-            __unkeyed-1 = "<leader>f";
-            __unkeyed-2.__raw = ''
-              function() require 'conform'.format { async = true } end
-            '';
-            desc = "Format Buffer";
-          }
-        ];
-      };
       settings = {
         default_format_opts.lsp_format = "fallback";
         format_on_save = {
