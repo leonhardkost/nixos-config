@@ -7,14 +7,14 @@
   config = lib.mkIf config.kekleo.graphical {
     programs.rofi = {
       enable = true;
-      font = "JetBrainsMono Nerd Font 11";
       theme = ./tokyonight.rasi;
-      extraConfig = {
+      settings = {
         modi = [
           "drun"
           "window"
           "run"
         ];
+        font = "JetBrainsMono Nerd Font 11";
         icon-theme = "Papirus-Dark";
         show-icons = true;
         terminal = "kitty";
