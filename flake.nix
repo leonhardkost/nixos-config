@@ -40,7 +40,16 @@
     {
       nixosConfigurations = import ./hosts { inherit self inputs; };
 
-      homeConfigurations = import ./standalone { inherit self inputs; };
+      # i. e. homeConfigurations.leonhard@x86_64-linux etc.
+      homeConfigurations = builtins.listToAttrs (
+        map (system: {
+          name = "leonhard@${system}";
+          value = import ./standalone {
+            pkgs = pkgsFor system;
+            inherit self inputs;
+          };
+        }) (import systems)
+      );
 
       packages = forAllSystems (
         system:

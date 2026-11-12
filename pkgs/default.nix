@@ -4,8 +4,9 @@
   ...
 }:
 {
-  nixvim = inputs.nixvim.lib.buildNixvimWith {
-    inherit (pkgs) system;
-    modules = [ ./nixvim ];
-  };
+  nixvim =
+    (inputs.nixvim.lib.evalNixvim {
+      inherit (pkgs) system;
+      modules = [ ./nixvim ];
+    }).config.build.package;
 }

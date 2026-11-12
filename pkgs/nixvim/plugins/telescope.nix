@@ -1,10 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    ripgrep
-  ];
-
-  programs.nixvim.plugins.telescope = {
+  plugins.telescope = {
     enable = true;
     extensions.fzf-native.enable = true;
     keymaps = {
@@ -43,4 +39,7 @@
       "%.ipynb"
     ];
   };
+  extraPackages = with pkgs; [
+    ripgrep
+  ];
 }

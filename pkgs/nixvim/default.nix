@@ -5,17 +5,12 @@
     ./plugins
   ];
 
-  programs.nixvim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    defaultEditor = true;
+  viAlias = true;
+  vimAlias = true;
 
-    colorschemes.tokyonight.enable = true;
+  colorschemes.tokyonight.enable = true;
 
-    clipboard.providers.wl-copy.enable = true;
+  clipboard.providers.wl-copy.enable = true;
 
-    globals.mapleader = " ";
-  };
+  globals.mapleader = " ";
 }

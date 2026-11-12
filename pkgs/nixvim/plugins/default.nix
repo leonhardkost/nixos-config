@@ -11,9 +11,7 @@
     ./which-key.nix
   ];
 
-  programs.nixvim = {
-    extraPlugins = with pkgs.vimPlugins; [
-      vim-sleuth
-    ];
-  };
+  extraPlugins = with pkgs.vimPlugins; [
+    vim-sleuth
+  ];
 }
