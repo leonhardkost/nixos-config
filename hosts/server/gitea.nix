@@ -3,7 +3,7 @@
   ...
 }:
 let
-  domain = config.kekleo.domain;
+  domain = config.nix-leonhard.domain;
   gitDomain = "git.${domain}";
 in
 {
@@ -24,7 +24,7 @@ in
 
     virtualHosts.${gitDomain} = {
       forceSSL = true;
-      useACMEHost = config.kekleo.domain;
+      useACMEHost = config.nix-leonhard.domain;
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString config.services.gitea.settings.server.HTTP_PORT}";
         proxyWebsockets = true;

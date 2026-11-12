@@ -2,75 +2,52 @@
   description = "leonhard's nix config";
 
   inputs = {
+    systems.url = "github:nix-systems/default";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs =
     {
       self,
+      systems,
       nixpkgs,
-      home-manager,
-      sops-nix,
-      nixvim,
       ...
     }@inputs:
     let
-      inherit (self) outputs;
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
-      homeImports = [
-        ./options.nix
-        nixvim.homeModules.nixvim
-        ./home-manager/base
-      ];
-
-      mkNixosConfig = name: modules: {
-        "${name}" = nixpkgs.lib.nixosSystem {
-          modules = modules ++ [
-            ./nixos/base
-            ./options.nix
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                extraSpecialArgs = { inherit inputs outputs; };
-                backupFileExtension = "hm.bak";
-                users.leonhard.imports = homeImports ++ [
-                  ./home-manager/leonhard
-                ];
-              };
-            }
-          ];
-          specialArgs = { inherit inputs outputs; };
+      inherit (nixpkgs) lib;
+      forAllSystems = lib.genAttrs (import systems);
+      pkgsFor =
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
         };
-      };
 
-      mkHomeConfig = name: modules: {
-        "${name}" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = modules ++ homeImports;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-      };
     in
     {
-      nixosConfigurations =
-        (mkNixosConfig "desktop" [ ./nixos/desktop ]) // (mkNixosConfig "server" [ ./nixos/server ]);
+      nixosConfigurations = import ./hosts { inherit self inputs; };
 
-      homeConfigurations = mkHomeConfig "leonhard" [ ./home-manager/leonhard ];
+      homeConfigurations = import ./standalone { inherit self inputs; };
+
+      packages = forAllSystems (
+        system:
+        import ./pkgs {
+          pkgs = pkgsFor system;
+          inherit inputs;
+        }
+      );
     };
 }

@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   ...
 }:
 {
@@ -11,13 +12,21 @@
     ./vaultwarden.nix
   ];
 
-  kekleo.graphical = false;
+  options.nix-leonhard.domain =
+    with lib.types;
+    lib.mkOption {
+      type = str;
+      default = "";
+      description = "Domain of the device.";
+    };
+
+  nix-leonhard.graphical = false;
 
   users.users.leonhard = {
     initialPassword = "leonhard";
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = config.kekleo.publicKeys;
+    openssh.authorizedKeys.keys = config.nix-leonhard.publicKeys;
   };
 
   networking = {
@@ -53,9 +62,9 @@
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = "admin@${config.kekleo.domain}";
+    defaults.email = "admin@${config.nix-leonhard.domain}";
     defaults.webroot = "/var/lib/acme/acme-challenge/";
-    certs.${config.kekleo.domain} = {
+    certs.${config.nix-leonhard.domain} = {
       group = config.services.nginx.group;
     };
   };
@@ -63,9 +72,9 @@
   services.nginx = {
     enable = true;
 
-    virtualHosts.${config.kekleo.domain} = {
+    virtualHosts.${config.nix-leonhard.domain} = {
       forceSSL = true;
-      useACMEHost = config.kekleo.domain;
+      useACMEHost = config.nix-leonhard.domain;
       locations."/.well-known/".root = config.security.acme.defaults.webroot;
     };
   };

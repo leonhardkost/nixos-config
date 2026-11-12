@@ -5,7 +5,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.kekleo.graphical {
+  config = lib.mkIf config.nix-leonhard.graphical {
     programs.kitty = {
       enable = true;
       themeFile = "tokyo_night_night";

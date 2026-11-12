@@ -3,7 +3,7 @@
   ...
 }:
 let
-  domain = config.kekleo.domain;
+  domain = config.nix-leonhard.domain;
   vaultDomain = "bitwarden.${domain}";
 in
 {
@@ -29,7 +29,7 @@ in
 
     virtualHosts.${vaultDomain} = {
       forceSSL = true;
-      useACMEHost = config.kekleo.domain;
+      useACMEHost = config.nix-leonhard.domain;
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
         proxyWebsockets = true;

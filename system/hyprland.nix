@@ -4,7 +4,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.kekleo.graphical {
+  config = lib.mkIf config.nix-leonhard.graphical {
     programs.hyprland.enable = true;
   };
 }
