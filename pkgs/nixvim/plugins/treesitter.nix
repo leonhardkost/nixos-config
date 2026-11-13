@@ -14,10 +14,10 @@
       vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
       -- folds (built into Neovim, uses folds.scm)
-      vim.api.nvim_buf_call(buf, function()
-        vim.wo[0][0].foldmethod = "expr"
-        vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      end)
+      -- vim.api.nvim_buf_call(buf, function()
+      --   vim.wo[0][0].foldmethod = "expr"
+      --   vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      -- end)
     end
 
     vim.api.nvim_create_autocmd("FileType", {
