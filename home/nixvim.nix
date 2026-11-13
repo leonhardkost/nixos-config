@@ -6,9 +6,12 @@
   ...
 }:
 {
-  options.nix-leonhard.neovim.enable = lib.mkEnableOption "neovim";
+  home.packages = lib.mkIf config.nix-leonhard.neovim.enable [
+    self.packages.${pkgs.stdenv.hostPlatform.system}.nixvim
+  ];
 
-  config = lib.mkIf config.nix-leonhard.neovim.enable {
-    home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.nixvim ];
+  home.sessionVariables = lib.mkIf config.nix-leonhard.neovim.enable {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 }

@@ -26,7 +26,7 @@
   };
 
   config = {
-    nix-leonhard.graphical = false;
+    nix-leonhard.neovim.enable = true;
 
     users.users.leonhard = {
       initialPassword = "leonhard";

@@ -3,6 +3,9 @@
     ./hardware-configuration.nix
   ];
 
+  nix-leonhard.graphical.enable = true;
+  nix-leonhard.neovim.enable = true;
+
   # Enable CUPS to print documents.
   #services.printing.enable = true;
 

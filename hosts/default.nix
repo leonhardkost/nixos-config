@@ -19,6 +19,7 @@ let
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.leonhard = ../home;
+          home-manager.extraSpecialArgs = specialArgs;
         }
       ];
     };

@@ -15,7 +15,6 @@ homeManagerConfiguration {
     ./base.nix
     ../home
     {
-      nix-leonhard.graphical = false;
       nix-leonhard.neovim.enable = true;
     }
   ];
