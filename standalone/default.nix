@@ -14,7 +14,6 @@ homeManagerConfiguration {
   modules = [
     ./base.nix
     ../home
-    ../options.nix
     {
       nix-leonhard.graphical = false;
       nix-leonhard.neovim.enable = true;

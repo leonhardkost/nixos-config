@@ -4,6 +4,8 @@
 }:
 {
   imports = [
+    ../options.nix
+
     ./fish.nix
     ./hyprland.nix
     ./ly.nix

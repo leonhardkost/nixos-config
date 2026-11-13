@@ -14,17 +14,19 @@ let
       inherit specialArgs;
       modules = modules ++ [
         ../system
-        ../options.nix
         inputs.home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.leonhard = ../home/default.nix;
+          home-manager.users.leonhard = ../home;
         }
       ];
     };
 in
 {
   desktop = mkNixosSystem [ ./desktop ];
-  server = mkNixosSystem [ ./server ];
+  server = mkNixosSystem [
+    ./server
+    inputs.sops-nix.nixosModules.sops
+  ];
 }
