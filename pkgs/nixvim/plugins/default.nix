@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   imports = [
     ./blink.nix
@@ -8,10 +7,10 @@
     ./treesitter.nix
     ./telescope.nix
     ./lualine.nix
-    ./which-key.nix
   ];
 
-  extraPlugins = with pkgs.vimPlugins; [
-    vim-sleuth
-  ];
+  plugins = {
+    sleuth.enable = true;
+    which-key.enable = true;
+  };
 }
