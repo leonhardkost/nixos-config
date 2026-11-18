@@ -27,6 +27,7 @@ in
   };
 
   xdg.enable = true;
+  xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
 
   nix-leonhard = lib.mkIf (osConfig != null) (
     mkDefaultSharedAttrs config.nix-leonhard (osConfig.nix-leonhard or { })
