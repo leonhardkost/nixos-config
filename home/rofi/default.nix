@@ -4,7 +4,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.nix-leonhard.graphical {
+  config = lib.mkIf config.nix-leonhard.graphical.enable {
     programs.rofi = {
       enable = true;
       theme = ./tokyonight.rasi;

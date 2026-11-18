@@ -6,7 +6,7 @@
 }:
 {
 
-  config = lib.mkIf config.nix-leonhard.graphical {
+  config = lib.mkIf config.nix-leonhard.graphical.enable {
     home.packages = with pkgs; [ nordzy-cursor-theme ];
 
     programs.waybar.enable = true;
