@@ -1,10 +1,7 @@
 {
   config,
-  lib,
   ...
 }:
 {
-  config = lib.mkIf config.nix-leonhard.graphical.enable {
-    programs.firefox.enable = true;
-  };
+  programs.firefox.enable = config.nix-leonhard.graphical.enable;
 }
