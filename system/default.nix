@@ -7,7 +7,7 @@
     ../options.nix
 
     ./fish.nix
-    ./hyprland.nix
+    ./niri.nix
     ./ly.nix
     ./nix.nix
   ];
