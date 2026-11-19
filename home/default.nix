@@ -16,7 +16,7 @@ in
     ./firefox.nix
     ./fish.nix
     ./nixvim.nix
-    ./hyprland.nix
+    ./niri.nix
     ./kitty.nix
     ./rofi
   ];
