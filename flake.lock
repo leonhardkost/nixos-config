@@ -99,7 +99,8 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "sops-nix": "sops-nix",
-        "systems": "systems_2"
+        "systems": "systems_2",
+        "zen-browser": "zen-browser"
       }
     },
     "sops-nix": {
@@ -151,6 +152,29 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795333741,
+        "narHash": "sha256-xJaT+L8DeMR0TJjAOlrjGqaRG2AjZrjivQfCtiLRtlY=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "81376950ac382a96b965f9d6f8bf60354ad99c2f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

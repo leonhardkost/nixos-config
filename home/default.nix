@@ -13,12 +13,12 @@ in
     ../options.nix
 
     ./git.nix
-    ./firefox.nix
     ./fish.nix
     ./nixvim.nix
     ./niri.nix
     ./kitty.nix
     ./rofi
+    ./zen-browser.nix
   ];
 
   home = {
