@@ -15,7 +15,7 @@ in
     ./git.nix
     ./fish.nix
     ./nixvim.nix
-    ./niri.nix
+    ./niri
     ./kitty.nix
     ./rofi
     ./zen-browser.nix
