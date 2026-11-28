@@ -14,11 +14,11 @@ in
 
     ./git.nix
     ./fish.nix
+    ./firefox.nix
     ./nixvim.nix
     ./niri
     ./kitty.nix
     ./rofi
-    ./zen-browser.nix
   ];
 
   home = {
